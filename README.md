@@ -85,7 +85,6 @@ No build tools or installation are needed. The site is plain HTML, CSS, and Java
 
 ## Notes for Maintenance
 
-- Update the phone number placeholder in `contact.html` (search for `TODO`).
 - The inquiry form validates input in the browser only. To receive submissions by email, connect the form to a service such as Formspree or to a backend.
 - Shared colors are defined as variables at the top of `style.css`, so a brand color can be changed in one place.
 

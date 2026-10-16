@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupScrollReveal();
   setupInquiryForm();
+  setupFaqAccordion();
+  setupLogoLightbox();
 });
 
 
@@ -160,6 +162,8 @@ function setupInquiryForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    if (!statusEl) return;
+
     // Validate every field; keep track of the first invalid one
     let firstInvalid = null;
     Object.keys(rules).forEach((name) => {
@@ -182,4 +186,143 @@ function setupInquiryForm() {
     statusEl.className = "form-status success";
     form.reset();
   });
+}
+/* --------------------------------------------------------------------------
+   5. FAQ accordion
+   Opens and closes FAQ answers when a question is clicked.
+   -------------------------------------------------------------------------- */
+function setupFaqAccordion() {
+  const questions = document.querySelectorAll(".faq-question");
+
+  if (!questions.length) return;
+
+  questions.forEach((question) => {
+    question.addEventListener("click", () => {
+      const faqItem = question.closest(".faq-item");
+      const isOpen = question.getAttribute("aria-expanded") === "true";
+
+      // Close other FAQ items
+      questions.forEach((otherQuestion) => {
+        const otherItem = otherQuestion.closest(".faq-item");
+
+        otherQuestion.setAttribute("aria-expanded", "false");
+
+        if (otherItem) {
+          otherItem.classList.remove("open");
+        }
+      });
+
+      // Open selected FAQ item
+      if (!isOpen) {
+        question.setAttribute("aria-expanded", "true");
+
+        if (faqItem) {
+          faqItem.classList.add("open");
+        }
+      }
+    });
+  });
+}
+/* --------------------------------------------------------------------------
+   6. Hero logo lightbox
+   Opens the main SMJ logo in a larger view when clicked
+   -------------------------------------------------------------------------- */
+
+function setupLogoLightbox() {
+
+  const heroLogo = document.querySelector(".hero-card img");
+
+  if (!heroLogo) return;
+
+  // Create the lightbox
+  const lightbox = document.createElement("div");
+  lightbox.className = "logo-lightbox";
+  lightbox.setAttribute("aria-hidden", "true");
+
+  lightbox.innerHTML = `
+    <div class="logo-lightbox-content" role="dialog" aria-modal="true" aria-label="SMJ Profaith logo preview">
+
+      <button
+        class="logo-lightbox-close"
+        type="button"
+        aria-label="Close logo preview"
+      >
+        &times;
+      </button>
+
+      <img
+        src="${heroLogo.src}"
+        alt="${heroLogo.alt}"
+      >
+
+    </div>
+  `;
+
+  document.body.appendChild(lightbox);
+
+  const closeButton = lightbox.querySelector(".logo-lightbox-close");
+
+  if (!closeButton) return;
+
+  // Open the logo
+  heroLogo.addEventListener("click", () => {
+
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+
+    closeButton.focus();
+
+  });
+
+  // Close button
+  closeButton.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    closeLogoLightbox();
+
+  });
+
+  // Close when clicking outside the logo
+  lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+
+      closeLogoLightbox();
+
+    }
+
+  });
+
+  // Prevent clicking the logo area from closing the lightbox
+  const lightboxContent = lightbox.querySelector(".logo-lightbox-content");
+
+  lightboxContent.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+  });
+
+  // Close with ESC
+  document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape" && lightbox.classList.contains("open")) {
+
+      closeLogoLightbox();
+
+    }
+
+  });
+
+  function closeLogoLightbox() {
+
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+  }
+
 }
