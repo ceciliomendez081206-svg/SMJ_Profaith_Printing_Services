@@ -1,0 +1,709 @@
+/* Product and service page layouts and responsive styles. */
+/* =========================================================
+   ENHANCED PRODUCTS & SERVICES DESIGN
+   ========================================================= */
+
+
+/* ===== PAGE BANNER ===== */
+
+.services-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.services-banner::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: rgba(242, 92, 122, 0.08);
+  top: -100px;
+  right: 8%;
+}
+
+.services-banner::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(242, 92, 122, 0.06);
+  bottom: -90px;
+  left: 8%;
+}
+
+.services-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.banner-label {
+  color: var(--pink);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+
+/* ===== SECTION HEADINGS ===== */
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  margin-bottom: 12px;
+
+  color: var(--pink);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.section-heading .section-title {
+  margin-bottom: 16px;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.section-intro {
+  max-width: 650px;
+  margin: 0 auto;
+
+  color: var(--gray);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   WHAT YOU GET
+   ========================================================= */
+
+.what-you-get-section {
+  background: #ffffff;
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+
+
+/* Product name cards */
+
+.what-you-get-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+
+.simple-product-card {
+  position: relative;
+
+  min-width: 0;
+  padding: 12px 12px 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.simple-product-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 5px;
+
+  background: var(--pink);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.3s ease;
+}
+
+
+.simple-product-card:hover {
+  transform: translateY(-8px);
+
+  border-color: var(--pink);
+
+  box-shadow: 0 16px 35px rgba(242, 92, 122, 0.13);
+}
+
+
+.simple-product-card:hover::before {
+  transform: scaleX(1);
+}
+
+
+.product-number {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 20px;
+
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.72);
+  color: #ffffff;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+.simple-product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 11px;
+  object-fit: cover;
+  background: var(--pink-soft);
+  transition: transform 0.35s ease;
+}
+
+
+.simple-product-card:hover img {
+  transform: scale(1.025);
+}
+
+
+.simple-product-card h3 {
+  margin: auto 0 0;
+  padding: 0 8px;
+
+  color: var(--black);
+
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+
+/* Description */
+
+.what-you-get-description {
+  max-width: 850px;
+  margin: 65px auto 0;
+
+  text-align: center;
+}
+
+
+.description-line {
+  width: 55px;
+  height: 3px;
+
+  margin: 0 auto 25px;
+
+  background: var(--pink);
+  border-radius: 10px;
+}
+
+
+.what-you-get-description p {
+  margin: 0 auto 25px;
+
+  color: var(--gray);
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.9;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.what-you-get-description .btn,
+.service-highlights-button .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.what-you-get-description .btn span,
+.service-highlights-button .btn span {
+  font-size: 1.05rem;
+
+  transition: transform 0.25s ease;
+}
+
+
+.what-you-get-description .btn:hover span,
+.service-highlights-button .btn:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   SERVICE HIGHLIGHTS
+   ========================================================= */
+
+.service-highlights-section {
+  position: relative;
+
+  background: var(--pink-soft);
+
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  overflow: hidden;
+}
+
+
+.service-highlights-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  background: rgba(242, 92, 122, 0.08);
+
+  top: -210px;
+  right: -100px;
+}
+
+
+.service-highlights-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  bottom: -160px;
+  left: -100px;
+}
+
+
+.service-highlights-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+
+.service-highlights-section .section-heading {
+  margin-bottom: 55px;
+}
+
+
+.service-highlights-section .section-title {
+  color: var(--black);
+}
+
+
+/* Highlight cards */
+
+.service-highlight-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+}
+
+
+.highlight-card {
+  position: relative;
+
+  display: flex;
+  gap: 22px;
+
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  border: 1px solid rgba(242, 92, 122, 0.14);
+
+  border-radius: 20px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.highlight-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+.highlight-number {
+  flex: 0 0 auto;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--pink-soft);
+
+  color: var(--pink);
+
+  border-radius: 50%;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+.highlight-content h3 {
+  margin: 0 0 10px;
+
+  color: var(--black);
+
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+}
+
+
+.highlight-content p {
+  margin: 0;
+
+  color: var(--gray);
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+
+/* Last card */
+
+.highlight-card:last-child {
+  grid-column: 1 / -1;
+
+  max-width: calc(50% - 11px);
+  width: 100%;
+  justify-self: center;
+}
+
+
+/* Service button */
+
+.service-highlights-button {
+  position: relative;
+
+  text-align: center;
+
+  margin-top: 45px;
+}
+
+
+.btn-white {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 25px;
+
+  background: #ffffff;
+
+  color: var(--pink);
+
+  border: 1px solid #ffffff;
+
+  border-radius: 999px;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.btn-white:hover {
+  transform: translateY(-3px);
+
+  background: var(--pink);
+
+  color: #ffffff;
+
+  box-shadow: 0 12px 25px rgba(242, 92, 122, 0.22);
+}
+
+
+/* =========================================================
+   ORDER PROCESS
+   ========================================================= */
+
+.order-process-section {
+  background: #ffffff;
+
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+
+.process-card {
+  padding: 30px 25px;
+
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.process-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+.process-card > span {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 18px;
+
+  background: var(--pink-soft);
+
+  color: var(--pink);
+
+  border-radius: 50%;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+.process-card h3 {
+  margin-bottom: 10px;
+
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+}
+
+
+.process-card p {
+  margin: 0;
+
+  color: var(--gray);
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FOOTER FONT
+   ========================================================= */
+
+.site-footer,
+.site-footer p,
+.site-footer a {
+  font-family: "Montserrat", sans-serif;
+}
+
+
+.site-footer h3 {
+  font-family: "Playfair Display", serif;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .what-you-get-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .service-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card:last-child {
+    grid-column: auto;
+
+    max-width: none;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .what-you-get-section,
+  .service-highlights-section,
+  .order-process-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+
+  .what-you-get-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .simple-product-card {
+    padding: 10px 10px 16px;
+  }
+
+  .product-number {
+    top: 17px;
+    right: 17px;
+  }
+
+  .simple-product-card h3 {
+    font-size: 1.15rem;
+  }
+
+
+  .service-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .highlight-card {
+    padding: 25px;
+
+    gap: 16px;
+  }
+
+
+  .highlight-content h3 {
+    font-size: 1.2rem;
+  }
+
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .what-you-get-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .simple-product-card {
+    padding: 10px 10px 15px;
+  }
+
+
+  .highlight-card {
+    flex-direction: column;
+  }
+
+
+  .highlight-number {
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .what-you-get-description {
+    margin-top: 50px;
+  }
+
+
+  .what-you-get-description p {
+    font-size: 0.88rem;
+  }
+
+}

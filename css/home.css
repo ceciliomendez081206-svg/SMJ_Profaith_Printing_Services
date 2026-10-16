@@ -1,0 +1,348 @@
+/* Home-page hero lightbox and price-list gallery. */
+/* ==========================================================
+   HERO LOGO - BORDER, SHADOW & CLICK-TO-ZOOM EFFECT
+   ========================================================== */
+
+.hero-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+
+  background: var(--white);
+
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(242, 92, 122, 0.10);
+
+  overflow: hidden;
+
+  cursor: zoom-in;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--pink);
+
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.12),
+    0 6px 18px rgba(242, 92, 122, 0.18);
+}
+
+.hero-card img {
+  display: block;
+
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+
+  border-radius: 10px;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.3s ease;
+}
+
+.hero-card:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.02);
+}
+
+
+/* Small "Click to view" hint */
+
+.hero-card::after {
+  content: "Click to view";
+
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+
+  padding: 0.4rem 0.7rem;
+
+  background: rgba(17, 17, 17, 0.82);
+  color: var(--white);
+
+  border-radius: 999px;
+
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  opacity: 0;
+  transform: translateY(5px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  pointer-events: none;
+}
+
+.hero-card:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================
+   LOGO LIGHTBOX
+   ========================================================== */
+
+.logo-lightbox {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+
+  background: rgba(17, 17, 17, 0.82);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  cursor: zoom-out;
+}
+
+.logo-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.logo-lightbox-content {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: min(850px, 92vw);
+  max-height: 90vh;
+
+  padding: 1.5rem;
+
+  background: var(--white);
+
+  border: 2px solid var(--pink);
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.30);
+
+  transform: scale(0.75);
+
+  transition: transform 0.35s ease;
+
+  cursor: default;
+}
+
+.logo-lightbox.open .logo-lightbox-content {
+  transform: scale(1);
+}
+
+.logo-lightbox-content img {
+  display: block;
+
+  width: auto;
+  max-width: min(700px, 80vw);
+  max-height: 75vh;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+}
+
+
+/* Close button */
+
+.logo-lightbox-close {
+  position: absolute;
+
+  top: -16px;
+  right: -16px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--pink);
+  color: var(--white);
+
+  border: 3px solid var(--white);
+  border-radius: 50%;
+
+  font-family: Arial, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.logo-lightbox-close:hover {
+  background: var(--pink-dark);
+  transform: scale(1.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .hero-card {
+    padding: 1.25rem;
+  }
+
+  .hero-card::after {
+    display: none;
+  }
+
+  .logo-lightbox {
+    padding: 1rem;
+  }
+
+  .logo-lightbox-content {
+    width: 92vw;
+    padding: 1rem;
+  }
+
+  .logo-lightbox-content img {
+    max-width: 82vw;
+    max-height: 70vh;
+  }
+
+  .logo-lightbox-close {
+    top: -12px;
+    right: -8px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 1.4rem;
+  }
+}
+
+
+/* Home page service price-list gallery */
+.rate-list-heading {
+  margin: 3rem 0 1.5rem;
+  text-align: center;
+}
+
+.rate-list-heading h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.5rem;
+}
+
+.rate-list-heading p {
+  margin: 0;
+  color: var(--gray);
+}
+
+.rate-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.rate-card {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0 0 1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.rate-card > a {
+  display: block;
+  background: var(--white);
+}
+
+.rate-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: top;
+}
+
+.rate-card h4 {
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.85rem 0.65rem 0.2rem;
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.rate-card-link-label {
+  margin: 0;
+  color: var(--pink-dark);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  .rate-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .rate-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .rate-card h4 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .rate-card-grid {
+    grid-template-columns: 1fr;
+  }
+}

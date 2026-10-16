@@ -1,0 +1,950 @@
+
+/* Shared foundations, global components, and core responsive rules. */
+:root {
+  --pink:        #f25c7a;   /* brand pink (from logo)      */
+  --pink-dark:   #d43f60;   /* hover / emphasis             */
+  --pink-soft:   #fde4ec;   /* section backgrounds          */
+  --white:       #ffffff;
+  --black:       #111111;   /* headings & body text         */
+  --gray:        #4a4a4a;   /* secondary text               */
+  --border:      #f1c3d1;
+
+  --font-heading: "Playfair Display", "Times New Roman", Times, serif;
+  --font-ui:      "Montserrat", "Roboto", Arial, sans-serif;
+  --font-body:    "Roboto", Arial, sans-serif;
+
+  --radius:      14px;
+  --shadow:      0 6px 18px rgba(0, 0, 0, 0.08);
+  --max-width:   1140px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Base / reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;   /* keeps headings clear of the sticky header */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--black);
+  background: var(--white);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--pink-dark);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0 0 0.6rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Layout helpers
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-pink {
+  background: var(--pink-soft);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title.left {
+  text-align: left;
+}
+
+.section-intro {
+  text-align: center;
+  color: var(--gray);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-grid.two-col {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.btn:hover,
+.btn:focus {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--white);
+}
+
+.btn-outline {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--white);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Header & Navigation
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--pink-soft);
+  border-top: 4px solid #075f61;
+  border-bottom: 3px solid var(--pink);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  gap: 2rem;
+}
+
+/* ===== BRAND ===== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+}
+
+.brand:hover,
+.brand:focus {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* ===== DESKTOP NAVIGATION ===== */
+
+.site-nav {
+  margin-left: auto;
+}
+
+.site-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/*
+  IMPORTANT:
+  Every navigation link uses exactly the same styling.
+  This prevents Products & Services from looking different.
+*/
+
+.site-nav ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav ul li a,
+.site-nav ul li a:link,
+.site-nav ul li a:visited {
+  display: inline-block;
+
+  padding: 0.35rem 0;
+
+  color: var(--black);
+  background: transparent;
+
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Same hover effect for EVERY navigation item */
+
+.site-nav ul li a:hover,
+.site-nav ul li a:focus-visible {
+  color: var(--pink-dark);
+  background: transparent;
+  border-bottom-color: var(--pink);
+
+  text-decoration: none;
+}
+
+/* Active page */
+
+.site-nav ul li a[aria-current="page"] {
+  color: var(--pink-dark);
+  background: transparent;
+  border-bottom-color: var(--pink);
+
+  text-decoration: none;
+}
+
+/*
+  Explicitly force Products & Services to behave exactly
+  like the other navigation links.
+*/
+
+.site-nav ul li a[href="services.html"] {
+  color: var(--black);
+  background: transparent;
+
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+
+  padding: 0.35rem 0;
+
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.site-nav ul li a[href="services.html"]:hover,
+.site-nav ul li a[href="services.html"]:focus-visible {
+  color: var(--pink-dark);
+  background: transparent;
+  border-bottom-color: var(--pink);
+
+  text-decoration: none;
+}
+
+
+/* ===== HAMBURGER BUTTON ===== */
+
+.nav-toggle {
+  display: none;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 5px;
+
+  width: 36px;
+  height: 30px;
+
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+
+  width: 100%;
+  height: 3px;
+
+  background: var(--black);
+  border-radius: 2px;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero (home page)
+   -------------------------------------------------------------------------- */
+.hero {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, var(--pink-soft) 0%, var(--white) 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+}
+
+.hero .accent {
+  color: var(--pink);
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--pink-dark);
+}
+
+.hero-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.hero-card img {
+  margin: 0 auto;
+  max-width: 280px;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Cards & highlights
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  color: var(--black);
+}
+
+.card p {
+  color: var(--gray);
+  margin: 0;
+}
+
+.card-large {
+  padding: 2.25rem 2rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.chip-list li {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--pink);
+  color: var(--white);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+}
+
+.logo-panel,
+.form-wrap,
+.contact-info {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.logo-panel img {
+  margin: 0 auto;
+  max-width: 260px;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Page banner (inner pages)
+   -------------------------------------------------------------------------- */
+.page-banner {
+  background: var(--pink);
+  color: var(--white);
+  text-align: center;
+  padding: 3.5rem 0;
+}
+
+.page-banner h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white);
+}
+
+.page-banner p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. About Us: objectives
+   -------------------------------------------------------------------------- */
+.objectives {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  counter-reset: obj;
+}
+
+.objectives li.card {
+  position: relative;
+  padding-top: 2.5rem;
+}
+
+.objectives li.card::before {
+  counter-increment: obj;
+  content: counter(obj);
+  position: absolute;
+  top: -16px;
+  left: 1.25rem;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 50%;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. Products & Services
+   -------------------------------------------------------------------------- */
+.product-card {
+  border-top: 5px solid var(--pink);
+}
+
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  background: var(--pink);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.step h3 {
+  font-size: 1.1rem;
+}
+
+.step p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.cta-inline {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Contact page
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.required {
+  color: var(--pink-dark);
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid #cfcfcf;
+  border-radius: 8px;
+  background: var(--white);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(242, 92, 122, 0.2);
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+}
+
+.inquiry-form .invalid {
+  border-color: #c0392b;
+}
+
+.error-msg {
+  display: block;
+  min-height: 1rem;
+  color: #c0392b;
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+.form-status {
+  margin-top: 1rem;
+  font-weight: 600;
+  text-align: center;
+  min-height: 1.5rem;
+}
+
+.form-status.success {
+  color: #1e7b45;
+}
+
+.form-status.error {
+  color: #c0392b;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+.info-block {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.info-block:last-child {
+  border-bottom: none;
+}
+
+.info-block h3 {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pink-dark);
+  margin-bottom: 0.4rem;
+}
+
+.info-block p {
+  margin: 0;
+}
+
+.social-links {
+  list-style: none;
+}
+
+.social-links li {
+  margin-bottom: 0.4rem;
+}
+
+.map-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--black);
+  color: #e8e8e8;
+  padding-top: 3rem;
+  font-size: 0.95rem;
+}
+
+.site-footer h3 {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--pink);
+}
+
+.site-footer a {
+  color: #f7c6d3;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: var(--white);
+}
+
+.site-footer ul {
+  list-style: none;
+}
+
+.site-footer li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  text-align: center;
+  padding: 1.25rem 0;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Scroll reveal animation
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   14. Responsive design
+   -------------------------------------------------------------------------- */
+
+/* Tablets and below */
+@media (max-width: 900px) {
+  .hero-grid,
+  .split,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card {
+    order: -1;
+  }
+}
+
+/* Mobile: hamburger menu */
+@media (max-width: 1000px) {
+
+  .nav-wrap {
+    min-height: 68px;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    margin-left: 0;
+
+    background: var(--pink-soft);
+
+    border-bottom: 3px solid var(--pink);
+
+    display: none;
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
+  }
+
+  .site-nav ul li {
+    border-top: 1px solid var(--border);
+  }
+
+  .site-nav ul li a,
+  .site-nav ul li a:link,
+  .site-nav ul li a:visited,
+  .site-nav ul li a[href="services.html"] {
+    display: block;
+
+    width: 100%;
+
+    padding: 0.9rem 1.25rem;
+
+    color: var(--black);
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-decoration: none;
+  }
+
+  .site-nav ul li a:hover,
+  .site-nav ul li a:focus-visible,
+  .site-nav ul li a[aria-current="page"] {
+    color: var(--pink-dark);
+    background: var(--pink-soft);
+
+    border: none;
+    text-decoration: none;
+  }
+
+  .site-nav ul li a[href="services.html"]:hover,
+  .site-nav ul li a[href="services.html"]:focus-visible {
+    color: var(--pink-dark);
+    background: var(--pink-soft);
+
+    border: none;
+    text-decoration: none;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .brand span {
+    font-size: 0.8rem;
+  }
+}

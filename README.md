@@ -40,10 +40,16 @@ SMJ_Profaith_Printing_Services/
 ├── about.html        About Us page
 ├── services.html     Products & Services page
 ├── contact.html      Contact Us page
-├── style.css         Main stylesheet (all page styling)
+├── css/
+│   ├── base.css      Shared layout, typography, components, and responsive rules
+│   ├── pages.css     Blog, FAQ, and shared page-specific components
+│   ├── services.css  Products & Services page styling
+│   └── home.css      Home page and price-list gallery styling
 ├── script.js         Main JavaScript (menu, animations, form validation)
 ├── assets/
-│   └── logo.png      Company logo
+│   ├── logo.png      Company logo
+│   ├── products/     Product photos shown on the services page
+│   └── service-rates/ Cropped price-list images shown on the home page
 ├── README.md         Project overview and instructions
 └── .gitignore        Files Git should ignore
 ```
